@@ -1,0 +1,142 @@
+/* ---------- The button ---------- */
+.cyberpunk-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 246px;
+  min-width: 232px;
+  padding: 17px 42px 17px 37px;
+  margin: 0;
+  color: var(--cb-yellow);
+  background: var(--cb-yellow);
+  border: none;
+  font-family: "BlenderProBold", "Courier New", monospace;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 120ms linear;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 32px),
+    calc(100% - 32px) 100%,
+    0 100%,
+    0 calc(50% + 2px),
+    22px calc(50% + 2px),
+    22px calc(50% - 2px),
+    0 calc(50% - 2px)
+  );
+}
+
+/* Inner background to simulate border */
+.cyberpunk-btn::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: var(--cb-bg);
+  z-index: 1;
+  transition: background-color 120ms linear;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 30px),
+    calc(100% - 30px) 100%,
+    0 100%,
+    0 calc(50% + 4px),
+    22px calc(50% + 4px),
+    22px calc(50% - 4px),
+    0 calc(50% - 4px)
+  );
+}
+
+.cyberpunk-btn:hover {
+  color: #0c0c0c;
+}
+
+.cyberpunk-btn:hover::after {
+  background: var(--cb-yellow);
+}
+
+/* Text sits above the fill */
+.cb-text, .cb-glitch { position: relative; }
+.cb-glitch { z-index: 2; }
+.cb-text { z-index: 3; }
+
+/* ---------- Text stack (the .cb-text gets split per-character) ---------- */
+.cb-text {
+  position: relative;
+  display: inline-block;
+  z-index: 3;
+}
+/* The script wraps each character in .cb-char so we can scramble
+   them independently. Spaces are rendered as &nbsp; so the
+   layout doesn't collapse. */
+.cb-char { display: inline-block; }
+
+/* The two ghost layers used for the RGB-split + slice */
+.cb-glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
+}
+.cb-glitch.cb-g1 { color: inherit; transform: translate(-2px, 0); }
+.cb-glitch.cb-g2 { color: inherit; transform: translate( 2px, 0); }
+.cyberpunk-btn:hover .cb-glitch.cb-g1 { animation: cb-glitch-a 280ms steps(1, end); }
+.cyberpunk-btn:hover .cb-glitch.cb-g2 { animation: cb-glitch-b 280ms steps(1, end); }
+
+/* ---------- Glitch keyframes for the ghost layers ---------- */
+@keyframes cb-glitch-a {
+  0%   { opacity: 0; transform: translate(0,0);    clip-path: inset(0 0 0 0); }
+  20%  { opacity: .9; transform: translate(-3px,0); clip-path: inset(20% 0 60% 0); }
+  40%  { opacity: .9; transform: translate( 3px,0); clip-path: inset(55% 0 15% 0); }
+  60%  { opacity: .9; transform: translate(-2px,0); clip-path: inset(35% 0 40% 0); }
+  80%  { opacity: .9; transform: translate( 2px,0); clip-path: inset(70% 0 5%  0); }
+  100% { opacity: 0; transform: translate(0,0);    clip-path: inset(0 0 0 0); }
+}
+@keyframes cb-glitch-b {
+  0%   { opacity: 0; transform: translate(0,0);    clip-path: inset(0 0 0 0); }
+  20%  { opacity: .9; transform: translate( 3px,0); clip-path: inset(60% 0 20% 0); }
+  40%  { opacity: .9; transform: translate(-3px,0); clip-path: inset(20% 0 55% 0); }
+  60%  { opacity: .9; transform: translate( 2px,0); clip-path: inset(45% 0 30% 0); }
+  80%  { opacity: .9; transform: translate(-2px,0); clip-path: inset(80% 0 5%  0); }
+  100% { opacity: 0; transform: translate(0,0);    clip-path: inset(0 0 0 0); }
+}
+
+/* Subtle scanline that sweeps across on hover */
+.cb-scan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+  overflow: hidden;
+  opacity: 0;
+}
+.cb-scan::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.25), transparent);
+  transform: translateX(-100%);
+}
+.cyberpunk-btn:hover .cb-scan { opacity: 1; }
+.cyberpunk-btn:hover .cb-scan::before { animation: cb-scan 500ms ease-out; }
+@keyframes cb-scan { 0% { transform: translateX(-100%); } 100% { transform: translateX(400%); } }
