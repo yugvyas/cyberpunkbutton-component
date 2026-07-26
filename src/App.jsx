@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import CyberpunkButton from './components/CyberpunkButton';
 import './App.css';
 
 function App() {
+  const scrollContainerRef = useRef(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!scrollContainerRef.current) return;
+      const rect = scrollContainerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      const totalScrollable = rect.height - windowHeight;
+      if (totalScrollable <= 0) return;
+
+      let progress = -rect.top / totalScrollable;
+      progress = Math.max(0, Math.min(1, progress));
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       <div className="app-container">
@@ -65,10 +87,14 @@ function App() {
       <div className="footer-bar"></div>
     </div>
 
-    {/* About / What's New Section */}
-    <section className="about-section">
-      <div className="about-header">
-        <div className="welcome-text">WELCOME TO NIGHT CITY</div>
+    {/* Scroll Transition Container */}
+    <div className="scroll-transition-container" ref={scrollContainerRef}>
+      <div className="scroll-sticky-wrapper" style={{ '--scroll-progress': scrollProgress }}>
+        
+        {/* Layer 1: About / What's New Section */}
+        <section className="about-section scroll-layer layer-bottom">
+          <div className="about-header">
+            <div className="welcome-text">WELCOME TO NIGHT CITY</div>
         <h2>ABOUT THE SHOW</h2>
         <p className="about-description">
           Cyberpunk: Edgerunners tells a standalone, 10-episode story about a street kid trying to survive in a<br/>
@@ -106,8 +132,37 @@ function App() {
         </div>
       </div>
 
-      <div className="landscape-silhouette"></div>
-    </section>
+          <div className="landscape-silhouette"></div>
+        </section>
+
+        {/* Layer 2: Characters Section (The Mask) */}
+        <section className="characters-section scroll-layer layer-top">
+          <div className="characters-header">
+            <span className="wanted-text">NIGHT CITY'S MOST WANTED</span>
+            <h2>CHARACTERS</h2>
+          </div>
+          <div className="characters-grid">
+            {[
+              { name: 'DAVID', img: '/david@1x-6aa86c3e.png' },
+              { name: 'LUCY', img: '/lucy@1x-03385e8a.png' },
+              { name: 'REBECCA', img: '/rebecca@1x-b8bc9202.png' },
+              { name: 'MAINE', img: '/maine@1x-e8477e91.png' },
+              { name: 'FARADAY', img: '/faraday@1x-7844668a.png' },
+              { name: 'ADAM SMASHER', img: '/smasher@1x-7b48be90.png' }
+            ].map(char => (
+              <div key={char.name} className="character-card">
+                <div className="character-img-wrapper">
+                  <img src={char.img} alt={char.name} className="character-img" />
+                </div>
+                <div className="character-name-box">
+                  <span className="character-name">{char.name}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
     </>
   );
 }

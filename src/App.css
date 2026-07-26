@@ -297,6 +297,151 @@
   z-index: 2;
 }
 
+/* --- Scroll Transition Layout --- */
+.scroll-transition-container {
+  height: 200vh;
+  position: relative;
+}
+
+.scroll-sticky-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.scroll-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Allow scrolling within the layer if content is too tall */
+}
+
+/* Base about section override for absolute positioning */
+section.about-section.layer-bottom {
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+/* Characters Section (Top Layer Mask) */
+.characters-section {
+  background-color: var(--cb-bg);
+  color: #fff;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  
+  /* The Jagged Wipe Polygon (Literal Building Skyline Silhouette) */
+  --p: calc(var(--scroll-progress, 0) * 190vw - 80vw);
+  clip-path: polygon(
+    0% 0%, 
+    calc(var(--p) + 10vw) 0%,
+    calc(var(--p) + 10vw) 8%,
+    calc(var(--p) + 5vw) 8%,
+    calc(var(--p) + 5vw) 12%,
+    calc(var(--p) + 15vw) 12%,
+    calc(var(--p) + 15vw) 20%,
+    calc(var(--p) + 18vw) 20%,
+    calc(var(--p) + 18vw) 22%,
+    calc(var(--p) + 10vw) 22%,
+    calc(var(--p) + 10vw) 26%,
+    calc(var(--p) + 25vw) 26%,
+    calc(var(--p) + 25vw) 35%,
+    calc(var(--p) + 20vw) 35%,
+    calc(var(--p) + 20vw) 40%,
+    calc(var(--p) + 35vw) 40%,
+    calc(var(--p) + 35vw) 50%,
+    calc(var(--p) + 30vw) 50%,
+    calc(var(--p) + 30vw) 55%,
+    calc(var(--p) + 45vw) 55%,
+    calc(var(--p) + 45vw) 65%,
+    calc(var(--p) + 40vw) 65%,
+    calc(var(--p) + 40vw) 70%,
+    calc(var(--p) + 55vw) 70%,
+    calc(var(--p) + 55vw) 80%,
+    calc(var(--p) + 50vw) 80%,
+    calc(var(--p) + 50vw) 85%,
+    calc(var(--p) + 65vw) 85%,
+    calc(var(--p) + 65vw) 95%,
+    calc(var(--p) + 60vw) 95%,
+    calc(var(--p) + 60vw) 100%,
+    0% 100%
+  );
+}
+
+.characters-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.wanted-text {
+  font-family: "BlenderProBold", sans-serif;
+  font-size: 14px;
+  color: #fff;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 2px;
+}
+
+.characters-header h2 {
+  font-family: "BlenderProBold", sans-serif;
+  font-size: 70px;
+  margin: 10px 0 0 0;
+  letter-spacing: 2px;
+}
+
+.characters-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+  height: 50vh;
+}
+
+.character-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 200px;
+}
+
+.character-img-wrapper {
+  height: 350px;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.character-img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.character-name-box {
+  border: 2px solid var(--cb-yellow);
+  padding: 10px 20px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+}
+
+.character-name {
+  color: var(--cb-yellow);
+  font-family: "BlenderProBold", sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
   .nav-logo-container {
