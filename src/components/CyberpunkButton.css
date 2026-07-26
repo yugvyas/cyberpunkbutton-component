@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 246px;
+  width: fit-content;
   min-width: 232px;
   padding: 17px 42px 17px 37px;
   margin: 0;
@@ -76,6 +76,18 @@
   display: inline-block;
   z-index: 3;
 }
+
+.cb-icon {
+  position: relative;
+  z-index: 3;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+}
+.cb-icon img {
+  height: 24px; /* Default icon height */
+}
+
 /* The script wraps each character in .cb-char so we can scramble
    them independently. Spaces are rendered as &nbsp; so the
    layout doesn't collapse. */

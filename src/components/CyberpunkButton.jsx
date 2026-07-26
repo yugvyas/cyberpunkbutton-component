@@ -3,7 +3,7 @@ import './CyberpunkButton.css';
 
 const POOL = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}<>?/|:;~";
 
-export default function CyberpunkButton({ children, href = "#", className = "" }) {
+export default function CyberpunkButton({ children, href = "#", className = "", icon = null }) {
   const btnRef = useRef(null);
   const textRef = useRef(null);
   
@@ -139,6 +139,7 @@ export default function CyberpunkButton({ children, href = "#", className = "" }
       className={`cyberpunk-btn ${className}`} 
       ref={btnRef}
     >
+      {icon && <span className="cb-icon">{icon}</span>}
       <span className="cb-text" ref={textRef}>{textContent}</span>
       <span className="cb-scan" aria-hidden="true"></span>
     </Element>

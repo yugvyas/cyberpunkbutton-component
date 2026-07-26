@@ -5,6 +5,13 @@
   src: url("/fonts/BlenderPro-Bold.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "BlenderProBook";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/BlenderPro-Book.woff2") format("woff2");
+}
+
 :root {
   --cb-yellow: #fcee0a;
   --cb-bg:     #0c0c0c;
@@ -15,11 +22,8 @@
 body {
   margin: 0;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: var(--cb-bg);
-  font-family: "BlenderProBold", "Courier New", monospace;
-  font-weight: 300;
+  font-family: "BlenderProBook", sans-serif;
+  font-weight: 400;
   color: #0c0c0c;
 }
