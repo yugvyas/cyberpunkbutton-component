@@ -113,7 +113,7 @@ function App() {
 
           <div className="content-box">
             <div className="content-image">
-              <img src="/whatsnew-4229ff06.jpg" alt="What's New" />
+              <img src="/whatsnew-4229ff06.jpg" alt="What's New" width="733" height="480" loading="lazy" />
             </div>
             <div className="content-text">
               <h3>WHAT'S NEW</h3>
@@ -142,16 +142,16 @@ function App() {
           </div>
           <div className="characters-grid">
             {[
-              { name: 'DAVID', img: '/david@1x-6aa86c3e.png' },
-              { name: 'LUCY', img: '/lucy@1x-03385e8a.png' },
-              { name: 'REBECCA', img: '/rebecca@1x-b8bc9202.png' },
-              { name: 'MAINE', img: '/maine@1x-e8477e91.png' },
-              { name: 'FARADAY', img: '/faraday@1x-7844668a.png' },
-              { name: 'ADAM SMASHER', img: '/smasher@1x-7b48be90.png' }
+              { name: 'DAVID', img: '/david@1x-6aa86c3e.png', width: 273, height: 400 },
+              { name: 'LUCY', img: '/lucy@1x-03385e8a.png', width: 273, height: 400 },
+              { name: 'REBECCA', img: '/rebecca@1x-b8bc9202.png', width: 273, height: 400 },
+              { name: 'MAINE', img: '/maine@1x-e8477e91.png', width: 273, height: 400 },
+              { name: 'FARADAY', img: '/faraday@1x-7844668a.png', width: 273, height: 400 },
+              { name: 'ADAM SMASHER', img: '/smasher@1x-7b48be90.png', width: 273, height: 400 }
             ].map(char => (
               <div key={char.name} className="character-card">
                 <div className="character-img-wrapper">
-                  <img src={char.img} alt={char.name} className="character-img" />
+                  <img src={char.img} alt={char.name} width={char.width} height={char.height} loading="lazy" className="character-img" />
                 </div>
                 <div className="character-name-box">
                   <span className="character-name">{char.name}</span>
