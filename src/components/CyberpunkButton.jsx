@@ -12,7 +12,7 @@ const scrambleChars = (originalArray) => {
 
 export default function CyberpunkButton({ children, href = "#", className = "", icon = null }) {
   const textContent = typeof children === 'string' ? children : "LEARN MORE";
-  
+
   // Memoize the original array of characters (handling spaces properly for rendering)
   const originalChars = useMemo(() => {
     return textContent.split('').map(ch => ch === " " ? "\u00A0" : ch);
@@ -43,7 +43,7 @@ export default function CyberpunkButton({ children, href = "#", className = "", 
     const TOTAL = 300;
     const intervalTime = TOTAL / FRAMES;
     let frame = 0;
-    
+
     // Initial scramble
     setMainChars(scrambleChars(originalChars));
     setGhost1Chars(scrambleChars(originalChars));

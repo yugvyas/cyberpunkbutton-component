@@ -108,11 +108,6 @@
   margin-bottom: 60px;
 }
 
-/* Customizing the CyberpunkButton to look more like the screenshot */
-.hero-btn {
-  /* You can tweak sizes here if needed */
-}
-
 .partner-logos {
   display: flex;
   justify-content: center;

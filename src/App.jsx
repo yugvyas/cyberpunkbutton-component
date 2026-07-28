@@ -95,42 +95,42 @@ function App() {
         <section className="about-section scroll-layer layer-bottom">
           <div className="about-header">
             <div className="welcome-text">WELCOME TO NIGHT CITY</div>
-        <h2>ABOUT THE SHOW</h2>
-        <p className="about-description">
-          Cyberpunk: Edgerunners tells a standalone, 10-episode story about a street kid trying to survive in a<br/>
-          technology and body modification-obsessed city of the future.<br/>
-          Having everything to lose, he chooses to stay alive by becoming an edgerunner—a mercenary outlaw<br/>
-          also known as a cyberpunk.
-        </p>
-      </div>
+            <h2>ABOUT THE SHOW</h2>
+            <p className="about-description">
+              Cyberpunk: Edgerunners tells a standalone, 10-episode story about a street kid trying to survive in a<br/>
+              technology and body modification-obsessed city of the future.<br/>
+              Having everything to lose, he chooses to stay alive by becoming an edgerunner—a mercenary outlaw<br/>
+              also known as a cyberpunk.
+            </p>
+          </div>
 
-      <div className="tabs-container">
-        <div className="tab active">WHAT'S NEW</div>
-        <div className="tab">MANGA</div>
-        <div className="tab">STORY</div>
-        <div className="tab">CHARACTERS</div>
-        <div className="tab">CREATORS</div>
-      </div>
+          <div className="tabs-container">
+            <div className="tab active">WHAT'S NEW</div>
+            <div className="tab">MANGA</div>
+            <div className="tab">STORY</div>
+            <div className="tab">CHARACTERS</div>
+            <div className="tab">CREATORS</div>
+          </div>
 
-      <div className="content-box">
-        <div className="content-image">
-          <img src="/whatsnew-4229ff06.jpg" alt="What's New" />
-        </div>
-        <div className="content-text">
-          <h3>WHAT'S NEW</h3>
-          <p>
-            It's official! Brace yourself for another trip to Night<br/>
-            City as Cyberpunk: Edgerunners 2 airs in Fall 2026,<br/>
-            exclusively on Netflix. Check out the teaser to see<br/>
-            what's in store as CD PROJEKT RED and TRIGGER<br/>
-            bring an all-new story that promises to take things<br/>
-            further than ever before.
-          </p>
-          <CyberpunkButton href="#" className="learn-more-btn" icon={<span style={{color: 'var(--cb-yellow)', fontWeight: 'bold'}}>►</span>}>
-            LEARN MORE
-          </CyberpunkButton>
-        </div>
-      </div>
+          <div className="content-box">
+            <div className="content-image">
+              <img src="/whatsnew-4229ff06.jpg" alt="What's New" />
+            </div>
+            <div className="content-text">
+              <h3>WHAT'S NEW</h3>
+              <p>
+                It's official! Brace yourself for another trip to Night<br/>
+                City as Cyberpunk: Edgerunners 2 airs in Fall 2026,<br/>
+                exclusively on Netflix. Check out the teaser to see<br/>
+                what's in store as CD PROJEKT RED and TRIGGER<br/>
+                bring an all-new story that promises to take things<br/>
+                further than ever before.
+              </p>
+              <CyberpunkButton href="#" className="learn-more-btn" icon={<span style={{color: 'var(--cb-yellow)', fontWeight: 'bold'}}>►</span>}>
+                LEARN MORE
+              </CyberpunkButton>
+            </div>
+          </div>
 
           <div className="landscape-silhouette"></div>
         </section>
