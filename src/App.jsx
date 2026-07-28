@@ -60,15 +60,14 @@ function App() {
         </div>
 
         <div className="button-group">
-          <CyberpunkButton 
-            href="#" 
-            className="hero-btn"
+          <CyberpunkButton
+            href="#"
             icon={<span style={{color: 'red', fontWeight: 'bold', fontSize: '24px'}}>N</span>}
           >
             WATCH NOW ON
           </CyberpunkButton>
 
-          <CyberpunkButton href="#" className="hero-btn">
+          <CyberpunkButton href="#">
             VIEW TRAILER
           </CyberpunkButton>
         </div>
