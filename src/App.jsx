@@ -2,9 +2,29 @@ import React, { useRef, useState, useEffect } from 'react';
 import CyberpunkButton from './components/CyberpunkButton';
 import './App.css';
 
+const TOTAL_MEDIA_PAGES = 6;
+
+// Per-page card titles + optional subtitle (subtitle only shown on the first card).
+const MEDIA_TITLES_PAGES = [
+  ['LET YOU DOWN',     'BY DAWID PODSIADŁO'],
+  ['NSFW TRAILER',     null],
+  ['OFFICIAL TRAILER', null],
+  ['INSIDE',           null],
+  ['CYBERWARE',        'BREAKDOWN'],
+  ['BEHIND THE SCENES', null],
+];
+
+const PRIMARY_TABS = [
+  'CYBERPUNK 2077', 'PHANTOM LIBERTY', 'EDGERUNNERS',
+  'EDGERUNNERS 2', 'NIGHT CITY WIRE', 'MUSIC',
+];
+
+const SUB_TABS = ['VIDEOS', 'WALLPAPERS', 'SCREENSHOTS'];
+
 function App() {
   const scrollContainerRef = useRef(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [mediaPage, setMediaPage] = useState(1);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -162,6 +182,85 @@ function App() {
         </section>
       </div>
     </div>
+
+    {/* MEDIA Section */}
+    <section className="media-section">
+      <div className="media-header">
+        <h2>MEDIA</h2>
+      </div>
+
+      <div className="tabs-container media-primary-tabs">
+        {PRIMARY_TABS.map((label, i) => (
+          <div
+            key={label}
+            className={`tab${i === 2 ? ' active' : ''}`}
+          >
+            {label}
+          </div>
+        ))}
+      </div>
+
+      <div className="media-subtabs">
+        {SUB_TABS.map((label, i) => (
+          <div
+            key={label}
+            className={`media-subtab${i === 0 ? ' active' : ''}`}
+          >
+            {label}
+          </div>
+        ))}
+      </div>
+
+      <div className="media-carousel">
+        <div className="media-cards-row">
+          {MEDIA_TITLES_PAGES[mediaPage - 1]
+            .concat(Array(4 - MEDIA_TITLES_PAGES[mediaPage - 1].length).fill(null))
+            .map((entry, i) => {
+              const title = typeof entry === 'string' ? entry : null;
+              const subtitle = Array.isArray(entry) ? entry[1] : null;
+              return (
+                <div key={i} className="media-card">
+                  <div className="media-card-thumb">
+                    {/* Solid black thumbnail — no image, no play icon, per user spec */}
+                    <span className="media-card-logo">CYBERPUNK: EDGERUNNERS</span>
+                    <span className="media-card-vid-label">VID :: V1.091</span>
+                  </div>
+                  <div className="media-card-title-box">
+                    <h3 className="media-card-title">{title ?? ' '}</h3>
+                    {subtitle && i === 0 && (
+                      <p className="media-card-subtitle">{subtitle}</p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+
+      <div className="media-pagination">
+        <button
+          type="button"
+          className="media-page-arrow"
+          onClick={() => setMediaPage(p => Math.max(1, p - 1))}
+          disabled={mediaPage === 1}
+          aria-label="Previous page"
+        >
+          ‹
+        </button>
+        <span className="media-page-count">
+          {mediaPage} of {TOTAL_MEDIA_PAGES}
+        </span>
+        <button
+          type="button"
+          className="media-page-arrow"
+          onClick={() => setMediaPage(p => Math.min(TOTAL_MEDIA_PAGES, p + 1))}
+          disabled={mediaPage === TOTAL_MEDIA_PAGES}
+          aria-label="Next page"
+        >
+          ›
+        </button>
+      </div>
+    </section>
     </>
   );
 }

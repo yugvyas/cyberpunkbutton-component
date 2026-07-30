@@ -437,6 +437,201 @@ section.about-section.layer-bottom {
   letter-spacing: 1px;
 }
 
+/* ---------- MEDIA SECTION ---------- */
+.media-section {
+  background: var(--cb-bg);
+  color: #fff;
+  padding: 80px 40px 100px;
+  position: relative;
+  z-index: 6;
+}
+
+.media-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.media-header h2 {
+  font-family: "BlenderProBold", sans-serif;
+  font-size: 80px;
+  letter-spacing: 2px;
+  color: #fff;
+  margin: 0;
+}
+
+/* Reuse the existing .tabs-container pattern, but flip borders to yellow
+   and force the active tab to white-bg/black-text to match the reference image. */
+.media-primary-tabs {
+  max-width: 900px;
+  margin: 0 auto 30px;
+  border-left-color: var(--cb-yellow);
+  border-top-color: var(--cb-yellow);
+  border-right-color: var(--cb-yellow);
+}
+
+.media-section .tab {
+  border-right-color: var(--cb-yellow);
+  border-bottom-color: var(--cb-yellow);
+}
+
+.media-section .tab.active {
+  background-color: #fff;
+  color: #000;
+}
+
+.media-section .tab:hover:not(.active) {
+  background-color: rgba(252, 238, 10, 0.1);
+}
+
+/* Secondary filter row — minimal underline tabs */
+.media-subtabs {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-bottom: 50px;
+}
+
+.media-subtab {
+  font-family: "BlenderProBold", sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #888;
+  padding: 6px 4px;
+  cursor: pointer;
+  position: relative;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.media-subtab:hover {
+  color: #ccc;
+}
+
+.media-subtab.active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+/* Carousel row — 4 cards, page-based (not scroll) */
+.media-carousel {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.media-cards-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* Card: yellow angled frame + black 16:9 thumb + bottom title bar */
+.media-card {
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  border: 2px solid var(--cb-yellow);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+  overflow: hidden;
+}
+
+.media-card-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000; /* solid black per user spec */
+}
+
+.media-card-vid-label {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-family: "BlenderProBold", sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--cb-yellow);
+}
+
+.media-card-logo {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-family: "BlenderProBold", sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--cb-yellow);
+  opacity: 0.85;
+}
+
+.media-card-title-box {
+  padding: 18px 16px 22px;
+  border-top: 2px solid var(--cb-yellow);
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.media-card-title {
+  font-family: "BlenderProBold", sans-serif;
+  font-size: 22px;
+  letter-spacing: 1.5px;
+  color: var(--cb-yellow);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.media-card-subtitle {
+  font-family: "BlenderProBold", sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--cb-yellow);
+  margin: 6px 0 0;
+  opacity: 0.85;
+}
+
+/* Pagination */
+.media-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 50px;
+}
+
+.media-page-arrow {
+  font-family: "BlenderProBold", sans-serif;
+  font-size: 22px;
+  color: var(--cb-yellow);
+  background: transparent;
+  border: 2px solid var(--cb-yellow);
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.media-page-arrow:hover:not(:disabled) {
+  background: var(--cb-yellow);
+  color: #000;
+}
+
+.media-page-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.media-page-count {
+  font-family: "BlenderProBold", sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #fff;
+  min-width: 60px;
+  text-align: center;
+}
+
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
   .nav-logo-container {
@@ -527,5 +722,40 @@ section.about-section.layer-bottom {
 
   .content-text p {
     font-size: 16px;
+  }
+
+  .media-section {
+    padding: 60px 16px 80px;
+  }
+
+  .media-header h2 {
+    font-size: 48px;
+  }
+
+  .media-primary-tabs {
+    flex-wrap: wrap;
+    border-right: none;
+    clip-path: none;
+    border-radius: 4px;
+  }
+
+  .media-section .tab {
+    flex: 1 1 33.333%;
+    font-size: 12px;
+    padding: 10px 6px;
+    border-right-color: var(--cb-yellow);
+  }
+
+  .media-subtabs {
+    gap: 24px;
+  }
+
+  .media-cards-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .media-card-title {
+    font-size: 18px;
   }
 }
